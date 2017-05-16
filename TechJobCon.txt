@@ -1,0 +1,3 @@
+﻿1>------ Build started: Project: TechJobsConsole, Configuration: Debug Any CPU ------
+1>TechJobsConsole -> C:\Users\waynecom1\lc101\C#\TechJobsConsole\src\TechJobsConsole\bin\Debug\netcoreapp1.0\TechJobsConsole.dll
+========== Build: 1 succeeded or up-to-date, 0 failed, 0 skipped ==========

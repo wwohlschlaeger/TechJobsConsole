@@ -36,7 +36,8 @@ namespace TechJobsConsole
 
                     if (columnChoice.Equals("all"))
                     {
-                        PrintJobs(JobData.FindAll());
+						List<Dictionary<string, string>> AllJobs = JobData.FindAll();
+						PrintJobs(AllJobs);
                     }
                     else
                     {
@@ -54,20 +55,31 @@ namespace TechJobsConsole
                     // How does the user want to search (e.g. by skill or employer)
                     string columnChoice = GetUserSelection("Search", columnChoices);
 
-                    // What is their search term?
-                    Console.WriteLine("\nSearch term: ");
-                    string searchTerm = Console.ReadLine();
+					// What is their search term?
+					string searchTerm;
+					do
+					{
+						Console.WriteLine("Please enter a search term:");
+						Console.WriteLine("\nSearch term: ");
+						searchTerm = Console.ReadLine();
+						searchTerm = searchTerm.ToLower();
+					}
+					while (searchTerm == "");
+					
 
-                    List<Dictionary<string, string>> searchResults;
+
+
+					List < Dictionary<string, string> > searchResults;
 
                     // Fetch results
                     if (columnChoice.Equals("all"))
                     {
-                        Console.WriteLine("Search all fields not yet implemented.");
-                    }
+						List<Dictionary<string, string>> searchAll = JobData.FindByValue(searchTerm);
+						PrintJobs(searchAll);
+					}
                     else
                     {
-                        searchResults = JobData.FindByColumnAndValue(columnChoice, searchTerm);
+                        searchResults = JobData.FindByColumnAndValue(columnChoice, searchTerm); 
                         PrintJobs(searchResults);
                     }
                 }
@@ -118,7 +130,24 @@ namespace TechJobsConsole
 
         private static void PrintJobs(List<Dictionary<string, string>> someJobs)
         {
-            Console.WriteLine("printJobs is not implemented yet");
-        }
+			
+			
+			int i = 0;
+			while (i < someJobs.Count)
+			{
+				Console.WriteLine("\n****");
+				foreach (KeyValuePair<string, string> item in someJobs[i])
+				{
+					Console.WriteLine("{0}, {1}", item.Key, item.Value);
+				}
+				
+				Console.WriteLine("****\n");
+				i++;
+			}
+			
+			Console.WriteLine("End Of File");
+
+			
+			}
     }
 }
